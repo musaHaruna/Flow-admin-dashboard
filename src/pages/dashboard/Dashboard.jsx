@@ -1,15 +1,9 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
 import './dashboard.css'
 import Sidebar from '../../components/Dashboard/sidebar/SideBar'
-import userService from '../../services/api/users'
-import { useQuery } from '@tanstack/react-query'
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
-import { loginSuccess, logoutSuccess } from '../../redux/reducers/userReducer'
-import SingleCoursePage from './pages/my-courses/single-course-page/SingleCoursePage'
-import { clearToken } from '../../redux/reducers/jwtReducer'
+import SingleCoursePage from "./pages/courses/single-course-page/SingleCoursePage"
+
 import './dashboard.css'
 export default function Dashboard() {
   // const dispatch = useDispatch();
