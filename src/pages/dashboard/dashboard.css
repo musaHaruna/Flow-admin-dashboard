@@ -1,0 +1,22 @@
+/* src/App.css */
+
+.dashboard {
+  display: flex;
+}
+
+.course-page {
+  background-image: url('../../assets/course-bg.png');
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+.sidebar-content {
+  width: 20%;
+}
+
+.dashboard-content {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 50px 0 0 250px;
+}
