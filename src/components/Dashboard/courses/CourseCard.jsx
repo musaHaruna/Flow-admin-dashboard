@@ -6,6 +6,12 @@ import DeleteCourseModal from '../../modals/courses/DeleteCourseModal'
 import DraftCourseModal from '../../modals/courses/DraftCourseModal'
 
 const CourseCard = ({ course }) => {
+  const customStyles = {
+    content: {
+      width: '70%', // Adjust the width
+      // Optionally set a max height
+    },
+  }
   const [dropdownVisible, setDropdownVisible] = useState(false)
   const [modalIsEditOpen, setModalIsEditOpen] = useState(false)
   const [modalIsDeleteOpen, setModalIsDeleteOpen] = useState(false)
@@ -65,6 +71,7 @@ const CourseCard = ({ course }) => {
           <Icon
             icon='pepicons-pencil:dots-y'
             width={30}
+            className='dropdown-menu-icon'
             onClick={toggleDropdown}
           />
           <div className={`dropdown-menu ${dropdownVisible ? 'show' : ''}`}>
@@ -96,7 +103,7 @@ const CourseCard = ({ course }) => {
         isOpen={modalIsEditOpen}
         onRequestClose={closeEditModal}
         contentLabel='Edit Course'
-        className='edit-course-modal'
+        className='edit-course-modal-custom'
         overlayClassName='custom-overlay'
       >
         <EditCourseModal course={course} closeModal={closeEditModal} />
@@ -116,6 +123,7 @@ const CourseCard = ({ course }) => {
         contentLabel='Edit Course'
         className='edit-course-modal'
         overlayClassName='custom-overlay'
+        styles={customStyles}
       >
         <DraftCourseModal closeModal={closeDraftModal} />
       </Modal>

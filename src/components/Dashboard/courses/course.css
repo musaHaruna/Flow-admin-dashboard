@@ -1,6 +1,52 @@
-.course-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+h3 {
+  font-size: 40px;
+  text-align: center;
 }
 
+p {
+  text-align: center;
+  font-size: 14px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.action-btn button {
+  display: block;
+  border: none;
+  padding: 0.5rem 2rem;
+}
+
+.no {
+  background-color: #e74a47;
+  color: #fff;
+}
+.yes {
+  border: 1px solid #e74a47;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.flex-row div {
+  width: 100%;
+}
+
+.edit-course-container {
+  width: 100%;
+}
+
+.flex-row div input,
+select {
+  display: block;
+  width: 100%;
+}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import './edit-course.css'
 
 const EditCourseModal = ({ course, closeModal }) => {
   const [title, setTitle] = useState(course.title)
@@ -38,47 +37,60 @@ const EditCourseModal = ({ course, closeModal }) => {
   return (
     <div className='edit-course-container'>
       <h2>Edit Course</h2>
-      <label>Course Title</label>
-      <input
-        type='text'
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-
-      <label>Description</label>
-      <input
-        type='text'
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-
-      <label>Cost</label>
-      <input
-        type='number'
-        value={cost}
-        onChange={(e) => setCost(e.target.value)}
-      />
-
-      <label>Status</label>
-      <select value={status} onChange={(e) => setStatus(e.target.value)}>
-        <option value='Published'>Published</option>
-        <option value='Draft'>Draft</option>
-      </select>
-
-      <label>Course Access</label>
-      <select value={access} onChange={(e) => setAccess(e.target.value)}>
-        {countries.map((country, index) => (
-          <option key={index} value={country.name}>
-            {country.name} <img src={country.flag} alt={country.name} />
-          </option>
-        ))}
-      </select>
-
-      <label>Profile Image</label>
-      <input
-        type='file'
-        onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
-      />
+      <div className='flex-row'>
+        <div>
+          <label>Course Title</label>
+          <input
+            type='text'
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Description</label>
+          <input
+            type='text'
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+      </div>
+      <div className='flex-row'>
+        <div>
+          <label>Cost</label>
+          <input
+            type='number'
+            value={cost}
+            onChange={(e) => setCost(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Status</label>
+          <select value={status} onChange={(e) => setStatus(e.target.value)}>
+            <option value='Published'>Published</option>
+            <option value='Draft'>Draft</option>
+          </select>
+        </div>
+      </div>
+      <div className='flex-row'>
+        <div>
+          <label>Course Access</label>
+          <select value={access} onChange={(e) => setAccess(e.target.value)}>
+            {countries.map((country, index) => (
+              <option key={index} value={country.name}>
+                {country.name} <img src={country.flag} alt={country.name} />
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label>Profile Image</label>
+          <input
+            type='file'
+            onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
+          />
+        </div>
+      </div>
 
       <label>Course URL</label>
       <input type='text' value={course.url} disabled />
