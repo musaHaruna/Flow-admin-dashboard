@@ -65,7 +65,7 @@ export default function ForgotPassword() {
         <p className='head-p'>Enter your email address you registered with.</p>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className='d-flex flex-column align-items-center '>
+          <div className=''>
             <div className='form-group my-4'>
               <label>Email address</label>
               <input

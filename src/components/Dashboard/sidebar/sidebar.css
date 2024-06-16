@@ -10,6 +10,24 @@
   border: 1px solid #44444440;
 }
 
+.sidebar-user-menu .link.active {
+  background-color: #fff;
+  color: #00bcc3;
+}
+
+.sidebar-user-menu .link.active-inner {
+  background-color: #fff;
+  border-radius: 5px;
+  padding-left: 3rem;
+  color: #00bcc3;
+}
+
+.sidebar-user-menu .link.inner {
+  padding-left: 3rem;
+}
+.sidebar-user-menu .link.inner {
+ border-radius: 5px;
+}
 .profile-img-container,
 .sidebar-user-menu {
   overflow-y: hidden;
@@ -56,13 +74,21 @@
   color: #ffffff;
   white-space: nowrap;
   padding: 5px 10px;
-  border-radius: 5px;
+  border-radius: 25px;
   background-color: transparent;
 }
 
+.chevron-icon {
+  font-size: 25px;
+  margin-left: 1rem;
+}
+.nested-menu {
+  padding-left: 2rem;
+}
+
 .sidebar-user-menu .link:hover {
-  background: rgba(20, 20, 20, 0.5);
-  color: #ffffff;
+  background: #ffffff;
+  color: #00bcc3;
   cursor: pointer;
 }
 

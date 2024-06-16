@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import CourseList from '../../../../components/Dashboard/courses/CourseList'
 import CourseFilters from '../../../../components/Dashboard/courses/CourseFilters'
+import draftImg from '../../../../assets/onboarding-individual.png'
+import publishedImg from '../../../../assets/onboarding-school.png'
 import './courses.css'
 import { Icon } from '@iconify/react'
-
+import CreateCourseModal from '../../../../components/modals/courses/CreateCourseModal'
+import Modal from 'react-modal'
 const coursesData = [
   {
     id: 1,
@@ -12,7 +15,7 @@ const coursesData = [
     students: 1548,
     rating: 98,
     price: 'N15,000',
-    image: 'https://via.placeholder.com/150',
+    image: publishedImg,
     category: 'Students',
     status: 'Published',
   },
@@ -23,7 +26,7 @@ const coursesData = [
     students: 1548,
     rating: 98,
     price: 'N15,000',
-    image: 'https://via.placeholder.com/150',
+    image: draftImg,
     category: 'Educators',
     status: 'Draft',
   },
@@ -32,6 +35,10 @@ const coursesData = [
 const CoursesAll = () => {
   const [filter, setFilter] = useState('all')
   const [sort, setSort] = useState('a-z')
+
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+
+  const closeModal = () => setIsCreateModalOpen(false)
 
   const filteredCourses = coursesData.filter((course) => {
     if (filter === 'all') return true
@@ -45,13 +52,13 @@ const CoursesAll = () => {
 
   return (
     <div className='courses-page'>
-      <div className='create-course'>
+      <div className='create-course' onClick={() => setIsCreateModalOpen(true)}>
         <span>
           <Icon icon='mdi-light:plus' />
         </span>
         <button>Create New Course</button>
       </div>
-      <div className='browse-all-courses-text container-fluid'>
+      <div className='browse-all-courses-text'>
         <p>Browse through all the courses currently available on FLOW.</p>
       </div>
       <CourseFilters
@@ -61,6 +68,15 @@ const CoursesAll = () => {
         setSort={setSort}
       />
       <CourseList courses={sortedCourses} />
+      <Modal
+        isOpen={isCreateModalOpen}
+        onRequestClose={closeModal}
+        contentLabel='Edit Course'
+        className='edit-course-modal-custom'
+        overlayClassName='custom-overlay'
+      >
+        <CreateCourseModal closeModal={closeModal} />
+      </Modal>
     </div>
   )
 }

@@ -1,0 +1,20 @@
+.nav-dropdown {
+  display: flex;
+  justify-content: space-between;
+}
+
+h2 {
+ cursor: pointer;
+}
+
+select {
+ display: block;
+ width: 100px;
+}
+
+.filter-sort {
+ display: flex;
+ align-items: center;
+ font-size: 14px;
+ 
+}

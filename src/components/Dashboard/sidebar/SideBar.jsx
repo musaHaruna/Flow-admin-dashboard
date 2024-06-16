@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import './sidebar.css'
 
 function Sidebar() {
+  const location = useLocation()
   const [isCoursesOpen, setIsCoursesOpen] = useState(false)
 
   const toggleCourses = () => {
     setIsCoursesOpen(!isCoursesOpen)
+  }
+
+  // Function to determine if a link is active
+  const isActiveLink = (path) => {
+    return location.pathname === path
   }
 
   return (
@@ -15,13 +21,13 @@ function Sidebar() {
       <div className='mt-5 sidebar-user-content'>
         <ul className='sidebar-user-menu mt-5 desktop'>
           <li>
-            <NavLink
-              className={({ isActive }) => (isActive ? 'link active' : 'link')}
+            <Link
               to='/dashboard'
+              className={`link ${isActiveLink('/dashboard') ? 'active' : ''}`}
             >
               <Icon icon='mdi:view-dashboard' className='sidebar-icon' />
               Overview
-            </NavLink>
+            </Link>
           </li>
 
           <li>
@@ -36,88 +42,99 @@ function Sidebar() {
             {isCoursesOpen && (
               <ul className='nested-menu'>
                 <li>
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive ? 'link active' : 'link'
-                    }
+                  <Link
                     to='/dashboard/courses/all'
+                    className={`link ${
+                      isActiveLink('/dashboard/courses/all') ? 'active-inner' : 'inner'
+                    }`}
                   >
                     All
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive ? 'link active' : 'link'
-                    }
+                  <Link
                     to='/dashboard/courses/draft'
+                    className={`link ${
+                      isActiveLink('/dashboard/courses/draft') ? 'active-inner' : 'inner'
+                    }`}
                   >
                     Draft
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive ? 'link active' : 'link'
-                    }
+                  <Link
                     to='/dashboard/courses/published'
+                    className={`link ${
+                      isActiveLink('/dashboard/courses/published')
+                        ? 'active-inner'
+                        : 'inner'
+                    }`}
                   >
                     Published
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             )}
           </li>
 
           <li>
-            <NavLink
-              className={({ isActive }) => (isActive ? 'link active' : 'link')}
+            <Link
               to='/dashboard/schools'
+              className={`link ${
+                isActiveLink('/dashboard/schools') ? 'active' : ''
+              }`}
             >
               <Icon icon='mdi:school' className='sidebar-icon' />
               Schools
-            </NavLink>
+            </Link>
           </li>
 
           <li>
-            <NavLink
-              className={({ isActive }) => (isActive ? 'link active' : 'link')}
+            <Link
               to='/dashboard/individuals'
+              className={`link ${
+                isActiveLink('/dashboard/individuals') ? 'active' : ''
+              }`}
             >
               <Icon icon='mdi:account' className='sidebar-icon' />
               Individuals
-            </NavLink>
+            </Link>
           </li>
 
           <li>
-            <NavLink
-              className={({ isActive }) => (isActive ? 'link active' : 'link')}
+            <Link
               to='/dashboard/support'
+              className={`link ${
+                isActiveLink('/dashboard/support') ? 'active' : ''
+              }`}
             >
               <Icon icon='mdi:lifebuoy' className='sidebar-icon' />
               Support
-            </NavLink>
+            </Link>
           </li>
 
           <li>
-            <NavLink
-              className={({ isActive }) => (isActive ? 'link active' : 'link')}
+            <Link
               to='/dashboard/payment-history'
+              className={`link ${
+                isActiveLink('/dashboard/payment-history') ? 'active' : ''
+              }`}
             >
               <Icon icon='mdi:credit-card-outline' className='sidebar-icon' />
               Payment History
-            </NavLink>
+            </Link>
           </li>
 
           <li>
-            <NavLink
-              className={({ isActive }) => (isActive ? 'link active' : 'link')}
+            <Link
               to='/dashboard/settings'
+              className={`link ${
+                isActiveLink('/dashboard/settings') ? 'active' : ''
+              }`}
             >
               <Icon icon='mdi:cog' className='sidebar-icon' />
               Settings
-              <Icon icon='mdi:chevron-down' className='chevron-icon' />
-            </NavLink>
+            </Link>
           </li>
         </ul>
       </div>

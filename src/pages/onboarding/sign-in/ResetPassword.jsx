@@ -122,10 +122,10 @@ export default function ResetPassword() {
           <p className='head-p'>Create a New Password</p>
 
           <form onSubmit={handleSignIn}>
-            <div className='d-flex flex-column align-items-center '>
+            <div className=''>
               <div className='form-group my-3'>
                 <label>Enter New Password</label>
-                <div className='create-password d-flex align-items-center input-with-icon'>
+                <div className='create-password '>
                   <input
                     type={showPassword ? 'text' : 'password'}
                     placeholder='Type here...'
@@ -148,7 +148,7 @@ export default function ResetPassword() {
 
               <div className='form-group my-3'>
                 <label>Confirm Password</label>
-                <div className='create-password d-flex align-items-center input-with-icon'>
+                <div className='create-password input-with-icon'>
                   <input
                     type={showConfirmPassword ? 'text' : 'password'}
                     placeholder='Type here...'

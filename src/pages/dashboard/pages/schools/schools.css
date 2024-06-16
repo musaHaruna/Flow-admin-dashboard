@@ -1,0 +1,86 @@
+.search-filter-sort {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  gap: 2rem;
+}
+
+.search-box {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  background-color: rgba(94, 45, 189, 0.05);
+  padding: 0.3rem;
+  border-radius: 5px;
+}
+
+.search-filter-sort .search-box input {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #262626;
+}
+
+select {
+  background-color: transparent;
+  color: #262626;
+  font-size: 12px;
+}
+.search-box input {
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filter-sort-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+table {
+  border-radius: 5px;
+}
+
+
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.badge-primary {
+  background-color: #ffcc00;
+}
+
+.badge-secondary {
+  background-color: #ff9900;
+}
+
+.dropdown-menu .dropdown-item {
+  cursor: pointer;
+}
+
+thead {
+  font-size: 14px;
+  font-weight: 200;
+  background-color: transparent;
+}
+
+.table thead tr th {
+  background-color: #fff;
+}
+
+.contact-person {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+

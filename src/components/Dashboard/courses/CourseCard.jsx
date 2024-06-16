@@ -96,9 +96,7 @@ const CourseCard = ({ course }) => {
           </div>
         </div>
       </div>
-      <div className={`course-status ${course.status.toLowerCase()}`}>
-        {/* {course.status} */}
-      </div>
+
       <Modal
         isOpen={modalIsEditOpen}
         onRequestClose={closeEditModal}

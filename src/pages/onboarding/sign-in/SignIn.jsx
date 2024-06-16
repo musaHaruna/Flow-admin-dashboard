@@ -66,7 +66,7 @@ export default function SignIn() {
       <p className='head-p'>Sign In using your official email address.</p>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='d-flex flex-column align-items-center '>
+        <div>
           <div className='form-group'>
             <label>Email *</label>
             <input type='email' {...register('email', { required: true })} />

@@ -12,6 +12,8 @@ import Overview from './pages/dashboard/pages/overview/Overview'
 import CoursesAll from './pages/dashboard/pages/courses/CoursesAll'
 import CoursesPublished from './pages/dashboard/pages/courses/CoursesPublished'
 import CoursesDraft from './pages/dashboard/pages/courses/CoursesDraft'
+import Schools from './pages/dashboard/pages/schools/Schools'
+import SchoolDetail from './pages/dashboard/pages/schools/school-detail/SchoolDetail'
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
             path='/dashboard/courses/published'
             element={<CoursesPublished />}
           />
+          <Route path='/dashboard/schools' element={<Schools />} />
+          <Route path='/dashboard/school/:id' element={<SchoolDetail />} />
 
           {/* <Route path='/dashboard/profile' element={<IndividualProfile />} />
           <Route path='/dashboard/my-courses' element={<MyCourses />} />

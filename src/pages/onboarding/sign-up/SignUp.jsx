@@ -74,7 +74,7 @@ export default function SignUp() {
       <p className='head-p'>Sign Up using your official email address.</p>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='d-flex flex-column align-items-center '>
+        <div>
           <div className='form-group'>
             <label>Email *</label>
             <input type='email' {...register('email')} />
@@ -155,7 +155,6 @@ export default function SignUp() {
       </p>
       <Modal
         isOpen={modalIsOpen}
-    
         className='custom-modal'
         overlayClassName='custom-overlay'
         contentLabel='Example Modal'

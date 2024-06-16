@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
 import './course-modal.css'
-import {Icon} from '@iconify/react'
-const EditCourseModal = ({ course, closeModal }) => {
-  const [title, setTitle] = useState(course.title)
-  const [description, setDescription] = useState(course.description)
-  const [cost, setCost] = useState(course.price)
-  const [status, setStatus] = useState(course.status)
-  const [access, setAccess] = useState(course.access)
-  const [image, setImage] = useState(course.image)
+import { Icon } from '@iconify/react'
+const CreateCourseModal = ({ closeModal }) => {
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [cost, setCost] = useState('')
+  const [status, setStatus] = useState('')
+  const [access, setAccess] = useState('')
+  const [image, setImage] = useState('')
   const [countries, setCountries] = useState([])
+
 
   useEffect(() => {
     fetch('https://restcountries.com/v3.1/all')
@@ -38,7 +39,7 @@ const EditCourseModal = ({ course, closeModal }) => {
   return (
     <div className='edit-course-container'>
       <div className='header'>
-        <h2>Edit Course</h2>
+        <h2>Create Course</h2>
         <span onClick={closeModal}>
           <Icon icon='bitcoin-icons:cross-outline' width={30} />
         </span>
@@ -100,11 +101,13 @@ const EditCourseModal = ({ course, closeModal }) => {
       </div>
 
       <label>Course URL *</label>
-      <input type='text' value={course.url} disabled />
+      <input type='text'  disabled />
 
-      <button className='update' onClick={handleUpdate}>Update</button>
+      <button className='update' onClick={handleUpdate}>
+        Save
+      </button>
     </div>
   )
 }
 
-export default EditCourseModal
+export default CreateCourseModal
