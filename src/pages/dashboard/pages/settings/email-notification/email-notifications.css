@@ -23,6 +23,14 @@
   padding: 1rem;
 }
 
+.teams {
+  width: 70%;
+}
+
+.team-members p.paragraph-width {
+  width: 50%;
+}
+
 .edit-btn {
   border: none;
   display: flex;

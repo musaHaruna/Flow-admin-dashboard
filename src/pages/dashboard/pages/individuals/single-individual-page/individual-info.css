@@ -12,11 +12,14 @@
   margin-bottom: 20px;
 }
 
-.card {
+.individual-info-container .card {
+  display: flex;
+  align-items: start;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  justify-content: start;
 }
 
 .profile {
@@ -27,8 +30,8 @@
 
 .profile-img {
   border-radius: 50%;
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
   margin-right: 20px;
 }
 
@@ -81,18 +84,55 @@
 }
 
 .additional-info {
-  background-color: #e9f7ff;
+  background-color: #329bd6;
   border-radius: 8px;
   color: #000;
   display: flex;
   justify-content: space-around;
+  gap: 1rem;
   padding: 10px;
+  width: 100%;
 }
 
 .additional-info p {
   margin: 0;
+  font-size: 10px;
+  color: #5ce1e6;
+  font-family: 200;
 }
 
 .additional-info span {
-  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+}
+
+.detail .name,
+.grade,
+.location,
+.country,
+.flag {
+  font-size: 14px;
+  text-align: left;
+}
+
+p.grade,
+p.location,
+p.country {
+  font-size: 14px;
+}
+
+h2.name {
+  text-align: left;
+}
+
+p.grade.primary {
+  text-align: left;
+  width: 100px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: left;
 }

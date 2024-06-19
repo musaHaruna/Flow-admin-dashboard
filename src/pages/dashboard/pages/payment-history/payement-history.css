@@ -11,13 +11,19 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  margin-top: 3rem;
 }
 
 .payment-history .search-filter-sort input {
   width: 60%;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(94, 45, 189, 0.05);
   border-radius: 4px;
+}
+
+.filters button {
+  background-color: transparent;
+  font-size: 14px;
 }
 
 .payment-history .search-filter-sort .filters {
@@ -29,7 +35,6 @@
   padding: 8px 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #f9f9f9;
   cursor: pointer;
 }
 
@@ -58,8 +63,6 @@
 
 .payment-history .pagination button {
   padding: 8px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
   cursor: pointer;
   border-radius: 4px;
 }

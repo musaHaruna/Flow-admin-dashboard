@@ -12,8 +12,8 @@ const PayementHistory = () => {
           placeholder='Search by time, date, order ID or Payment Type'
         />
         <div className='filters'>
-          <button>Filter by ▼</button>
-          <button>Sort by ▼</button>
+          <button>Filter by</button>
+          <button>Sort by </button>
         </div>
       </div>
       <table>

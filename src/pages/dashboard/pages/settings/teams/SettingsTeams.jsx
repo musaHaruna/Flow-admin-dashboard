@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import './settings-team.css'
 import { Icon } from '@iconify/react'
+import Modal from 'react-modal'
+import SettingsAddNewTeam from '../../../../../components/modals/settings-profile/SettingsAddNewTeam'
 
 const SettingsTeams = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [modalIsOpenSuccess, setModalIsOpenSuccess] = useState(false)
   const [showDropdown, setShowDropdown] = useState(null)
   const [selectedMember, setSelectedMember] = useState(null)
   const [selectedTable, setSelectedTable] = useState(null)
@@ -75,6 +78,7 @@ const SettingsTeams = () => {
 
   const closeModal = () => {
     setModalIsOpen(false)
+    setModalIsOpenSuccess(false)
     setSelectedMember(null)
     setSelectedTable(null)
   }
@@ -143,7 +147,7 @@ const SettingsTeams = () => {
                   />
                   {showDropdown === index && (
                     <div className='dropdown'>
-                      <button onClick={() => openModal(member, 'teamMembers')}>
+                      <button onClick={() => setModalIsOpenSuccess(true)}>
                         <span>
                           <Icon icon='fluent:delete-20-regular' />
                         </span>
@@ -157,6 +161,34 @@ const SettingsTeams = () => {
           ))}
         </tbody>
       </table>
+      <Modal
+        isOpen={modalIsOpenSuccess}
+        onRequestClose={closeModal}
+        contentLabel='Delete Modal'
+        className='custom-modal-success'
+        overlayClassName='custom-overlay'
+      >
+        <div className='succes-modal-content'>
+          <div className='success-icon icon-with-bg'>
+            <div class='circle'>
+              <div class='checkmark'></div>
+            </div>
+          </div>
+          <h4 className='text-center'>Successfull</h4>
+          <p className='text-center'>
+            You have successfully invited a teammate.
+          </p>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel='Edit Course'
+        className='edit-course-modal-custom'
+        overlayClassName='custom-overlay'
+      >
+        <SettingsAddNewTeam closeModal={closeModal} />
+      </Modal>
     </div>
   )
 }

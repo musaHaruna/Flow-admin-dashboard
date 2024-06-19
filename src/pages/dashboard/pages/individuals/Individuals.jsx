@@ -1,6 +1,7 @@
 import React from 'react'
 import './individuals.css'
 import { useNavigate } from 'react-router-dom'
+import { Icon } from '@iconify/react'
 
 const Individuals = () => {
   const individualsData = [
@@ -57,8 +58,8 @@ const Individuals = () => {
           className='search-box'
         />
         <div className='filter-sort'>
-          <button className='filter-btn'>Filter by</button>
-          <button className='sort-btn'>Sort by</button>
+          <button className='btn'>Filter by</button>
+          <button className='btn'>Sort by</button>
         </div>
       </div>
       <table className='individuals-table'>
@@ -76,7 +77,9 @@ const Individuals = () => {
           {individualsData.map((individual) => (
             <tr
               key={individual.sn}
-              onClick={() => navigate(`/dashboard/individuals/${individual.sn}`)}
+              onClick={() =>
+                navigate(`/dashboard/individuals/${individual.sn}`)
+              }
               style={{ cursor: 'pointer' }}
             >
               <td>{individual.sn}</td>
@@ -90,15 +93,22 @@ const Individuals = () => {
                   {individual.grade}
                 </span>
               </td>
-              <td>{individual.email}</td>
+              <td className='email'>
+                {individual.email}
+                <span>
+                  <Icon icon='solar:alt-arrow-right-line-duotone' />
+                </span>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
       <div className='pagination'>
         <span>1 - 4</span>
-        <button className='pagination-btn'>❮</button>
-        <button className='pagination-btn'>❯</button>
+        <div>
+          <button className='pagination-btn'>❮</button>
+          <button className='pagination-btn'>❯</button>
+        </div>
       </div>
     </div>
   )

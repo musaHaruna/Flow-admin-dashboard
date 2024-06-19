@@ -1,5 +1,6 @@
 import React from 'react'
 import './individual-info.css'
+import profileImage from '../../../../../assets/user-profile-image.png'
 
 const IndividualInfo = () => {
   return (
@@ -7,14 +8,10 @@ const IndividualInfo = () => {
       <button className='back-btn'>← Back</button>
       <div className='card'>
         <div className='profile'>
-          <img
-            src='https://via.placeholder.com/100'
-            alt='Profile'
-            className='profile-img'
-          />
+          <img src={profileImage} alt='Profile' className='profile-img' />
           <div className='details'>
             <h2 className='name'>Morayo Ojikutu</h2>
-            <span className='grade primary'>Primary</span>
+            <p className='grade primary'>Primary</p>
             <p className='location'>LGA | STATE</p>
             <p className='country'>
               NIGERIA <span className='flag'>🇳🇬</span>

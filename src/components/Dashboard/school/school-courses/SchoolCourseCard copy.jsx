@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import { Icon } from '@iconify/react'
 import Modal from 'react-modal'
-import EditCourseModal from '../../modals/courses/EditCourseModal'
-import DeleteCourseModal from '../../modals/courses/DeleteCourseModal'
-import DraftCourseModal from '../../modals/courses/DraftCourseModal'
 
-const CourseCard = ({ course }) => {
+const SchoolCourseCard = ({ course }) => {
   const customStyles = {
     content: {
       width: '70%', // Adjust the width
@@ -13,9 +10,6 @@ const CourseCard = ({ course }) => {
     },
   }
   const [dropdownVisible, setDropdownVisible] = useState(false)
-  const [modalIsEditOpen, setModalIsEditOpen] = useState(false)
-  const [modalIsDeleteOpen, setModalIsDeleteOpen] = useState(false)
-  const [modalIsDraftOpen, setModalIsDraftOpen] = useState(false)
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible)
@@ -95,37 +89,8 @@ const CourseCard = ({ course }) => {
           </div>
         </div>
       </div>
-
-      <Modal
-        isOpen={modalIsEditOpen}
-        onRequestClose={closeEditModal}
-        contentLabel='Edit Course'
-        className='edit-course-modal-custom'
-        overlayClassName='custom-overlay'
-      >
-        <EditCourseModal course={course} closeModal={closeEditModal} />
-      </Modal>
-      <Modal
-        isOpen={modalIsDeleteOpen}
-        onRequestClose={closeDeleteModal}
-        contentLabel='Delete Course'
-        className='edit-course-modal'
-        overlayClassName='custom-overlay'
-      >
-        <DeleteCourseModal closeModal={closeDeleteModal} />
-      </Modal>
-      <Modal
-        isOpen={modalIsDraftOpen}
-        onRequestClose={closeDraftModal}
-        contentLabel='Edit Course'
-        className='edit-course-modal'
-        overlayClassName='custom-overlay'
-        styles={customStyles}
-      >
-        <DraftCourseModal closeModal={closeDraftModal} />
-      </Modal>
     </div>
   )
 }
 
-export default CourseCard
+export default SchoolCourseCard

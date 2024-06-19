@@ -46,12 +46,12 @@
 }
 
 .heading.banner p {
- color: #275dad;
+  color: #275dad;
 }
 
 .heading.banner p span {
   font-size: 10px;
-  color: #5B616A;
+  color: #5b616a;
   margin-right: 10px;
 }
 
@@ -171,4 +171,34 @@ tbody {
 .success-modal .rounded-icon {
   color: #50aa50;
   font-size: 50px;
+}
+
+.circle {
+  width: 70px;
+  height: 70px;
+  background-color: #d3f3d3; /* Light green background */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark {
+  width: 50px;
+  height: 50px;
+  background-color: #32d296; /* Darker green for checkmark */
+  border-radius: 50%;
+  position: relative;
+}
+
+.checkmark:after {
+  content: '';
+  position: absolute;
+  left: 35%;
+  top: 15%;
+  width: 30%;
+  height: 60%;
+  border: solid white;
+  border-width: 0 6px 6px 0;
+  transform: rotate(45deg);
 }

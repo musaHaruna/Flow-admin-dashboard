@@ -1,7 +1,8 @@
-.header {
+.individuals-container .header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  border-bottom: none;
 }
 
 .search-box {
@@ -16,13 +17,26 @@
   gap: 10px;
 }
 
-.filter-btn,
-.sort-btn {
-  padding: 8px 12px;
+.individuals-container .filter-sort {
   border: none;
+}
+
+.filter-sort .btn,
+div.btn {
+  padding: 5px 12px;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  background-color: #f0f0f0;
+  background-color: transparent;
   cursor: pointer;
+  font-size: 14px;
+}
+
+.email span {
+  display: inline-block;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: -1rem;
 }
 
 .individuals-table {

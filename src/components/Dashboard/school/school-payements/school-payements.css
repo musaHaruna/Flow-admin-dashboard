@@ -3,23 +3,35 @@
   padding: 20px;
 }
 
-.search-filter {
+.school-payments .search-filter {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
-.search-filter input {
-  padding: 10px;
+.school-payments .search-filter input {
+  padding: 5px;
   width: 70%;
   border: 1px solid #ddd;
+  background-color: rgba(94, 45, 189, 0.05);
   border-radius: 4px;
+  font-size: 14px;
+}
+
+.school-payments .filter-sort {
+  border: none;
+}
+.school-payments .filter-sort button,
+select {
+  border: none;
+  background-color: transparent;
+  padding: px;
+  border: 1px solid #ddd;
 }
 
 .filter-sort button {
   margin-left: 10px;
   padding: 10px 20px;
-  border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #f2f2f2;
   cursor: pointer;
@@ -65,10 +77,13 @@ th {
   padding: 5px 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  background-color: #f2f2f2;
+  background-color: transparent;
   cursor: pointer;
+  border: none;
 }
 
-.pagination button:hover {
-  background-color: #e2e2e2;
+table thead tr th {
+  background-color: transparent;
+  font-size: 14px;
+  color: #333333;
 }
