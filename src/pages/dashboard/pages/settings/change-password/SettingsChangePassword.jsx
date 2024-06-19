@@ -15,7 +15,7 @@ const SettingsChangePassword = () => {
         Take charge of the security access to your dashboard. Change your{' '}
         <a href='/'>Flow</a> password by filling the form below.
       </p>
-      <div>
+      <div className='mt-5'>
         <div className='form-group'>
           <label htmlFor='old-password'>Old Password</label>
           <div>
