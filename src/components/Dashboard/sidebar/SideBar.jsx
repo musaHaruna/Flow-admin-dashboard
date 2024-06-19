@@ -6,20 +6,24 @@ import './sidebar.css'
 function Sidebar() {
   const location = useLocation()
   const [isCoursesOpen, setIsCoursesOpen] = useState(false)
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
 
   const toggleCourses = () => {
     setIsCoursesOpen(!isCoursesOpen)
   }
 
-  // Function to determine if a link is active
+  const toggleSettings = () => {
+    setIsSettingsOpen(!isSettingsOpen)
+  }
+
   const isActiveLink = (path) => {
     return location.pathname === path
   }
 
   return (
     <div className='sidebar-user'>
-      <div className='mt-5 sidebar-user-content'>
-        <ul className='sidebar-user-menu mt-5 desktop'>
+      <div className='sidebar-user-content'>
+        <ul className='sidebar-user-menu mt-3 desktop'>
           <li>
             <Link
               to='/dashboard'
@@ -45,7 +49,9 @@ function Sidebar() {
                   <Link
                     to='/dashboard/courses/all'
                     className={`link ${
-                      isActiveLink('/dashboard/courses/all') ? 'active-inner' : 'inner'
+                      isActiveLink('/dashboard/courses/all')
+                        ? 'active-inner'
+                        : 'inner'
                     }`}
                   >
                     All
@@ -55,7 +61,9 @@ function Sidebar() {
                   <Link
                     to='/dashboard/courses/draft'
                     className={`link ${
-                      isActiveLink('/dashboard/courses/draft') ? 'active-inner' : 'inner'
+                      isActiveLink('/dashboard/courses/draft')
+                        ? 'active-inner'
+                        : 'inner'
                     }`}
                   >
                     Draft
@@ -126,15 +134,78 @@ function Sidebar() {
           </li>
 
           <li>
-            <Link
-              to='/dashboard/settings'
-              className={`link ${
-                isActiveLink('/dashboard/settings') ? 'active' : ''
-              }`}
-            >
+            <div className='link' onClick={toggleSettings}>
               <Icon icon='mdi:cog' className='sidebar-icon' />
               Settings
-            </Link>
+              <Icon
+                icon={isSettingsOpen ? 'mdi:chevron-up' : 'mdi:chevron-down'}
+                className='chevron-icon'
+              />
+            </div>
+            {isSettingsOpen && (
+              <ul className='nested-menu'>
+                <li>
+                  <Link
+                    to='/dashboard/settings/profile'
+                    className={`link ${
+                      isActiveLink('/dashboard/settings/profile')
+                        ? 'active-inner'
+                        : 'inner'
+                    }`}
+                  >
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to='/dashboard/settings/teams'
+                    className={`link ${
+                      isActiveLink('/dashboard/settings/teams')
+                        ? 'active-inner'
+                        : 'inner'
+                    }`}
+                  >
+                    Teams
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to='/dashboard/settings/change-password'
+                    className={`link ${
+                      isActiveLink('/dashboard/settings/change-password')
+                        ? 'active-inner'
+                        : 'inner'
+                    }`}
+                  >
+                    Change Password
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to='/dashboard/settings/email-notifications'
+                    className={`link ${
+                      isActiveLink('/dashboard/settings/email-notifications')
+                        ? 'active-inner'
+                        : 'inner'
+                    }`}
+                  >
+                    Email Notifications
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to='/dashboard/settings/deactivate-account'
+                    className={`link ${
+                      isActiveLink('/dashboard/settings/deactivate-account')
+                        ? 'active-inner'
+                        : 'inner'
+                    }`}
+                  >
+                    Deactivate Account
+                  </Link>
+                </li>
+              </ul>
+            )}
           </li>
         </ul>
       </div>

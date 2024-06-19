@@ -1,13 +1,15 @@
 .sidebar-user {
   position: fixed;
   width: 250px;
-  height: 100vh;
+  height: 90vh;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #00bcc3;
   box-shadow: 0px 4px 15px 0px #0000000d;
   border: 1px solid #44444440;
+  overflow-y: scroll;
 }
 
 .sidebar-user-menu .link.active {
@@ -18,19 +20,19 @@
 .sidebar-user-menu .link.active-inner {
   background-color: #fff;
   border-radius: 5px;
-  padding-left: 3rem;
+  padding-left: 2rem;
   color: #00bcc3;
 }
 
 .sidebar-user-menu .link.inner {
-  padding-left: 3rem;
+  padding-left: 2rem;
 }
 .sidebar-user-menu .link.inner {
- border-radius: 5px;
+  border-radius: 5px;
 }
 .profile-img-container,
 .sidebar-user-menu {
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .mobile-sidebar-menu {
@@ -53,7 +55,7 @@
 .sidebar-user-menu {
   display: flex;
   flex-direction: column;
-  margin-top: 4rem;
+
 }
 
 .sidebar-user-menu a {
@@ -180,6 +182,8 @@
     justify-content: center;
   }
 }
+
+
 
 @media (min-width: 426px) and (max-width: 575.98px) {
   .content {

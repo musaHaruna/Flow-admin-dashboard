@@ -1,0 +1,98 @@
+.individual-info-container {
+  font-size: 14px;
+  padding: 20px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-img {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  margin-right: 20px;
+}
+
+.details {
+  flex: 1;
+}
+
+.name {
+  font-size: 24px;
+  margin: 0 0 10px;
+}
+
+.grade {
+  background-color: #ffc107;
+  border-radius: 12px;
+  color: #fff;
+  display: inline-block;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+.primary {
+  background-color: #ffc107;
+}
+
+.location,
+.country {
+  margin: 0;
+}
+
+.flag {
+  margin-left: 5px;
+}
+
+.tags {
+  margin-top: 10px;
+}
+
+.tag {
+  background-color: #17a2b8;
+  border-radius: 12px;
+  color: #fff;
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 10px;
+}
+
+.student {
+  background-color: #007bff;
+}
+
+.additional-info {
+  background-color: #e9f7ff;
+  border-radius: 8px;
+  color: #000;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.additional-info p {
+  margin: 0;
+}
+
+.additional-info span {
+  font-weight: bold;
+}

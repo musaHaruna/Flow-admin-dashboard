@@ -156,8 +156,35 @@ input:-webkit-autofill:active {
   border-radius: 20px;
   padding: 30px 60px;
 }
+.custom-modal-success {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fefefe;
+  margin: 0 auto;
+  border-radius: 20px;
+  padding: 30px 60px;
+}
 
 .modal-content h2 {
   font-size: 40px;
   text-align: center;
 }
+
+/* For Webkit-based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* Slim width */
+}
+
+::-webkit-scrollbar-track {
+  background: #00bcc3; /* Background of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #91f8fb; /* Color of the scroll thumb */
+  border-radius: 10px; /* Rounded corners for the scroll thumb */
+  border: none; /* Optional: Adds a border around the thumb */
+}
+
+/* For Firefox */

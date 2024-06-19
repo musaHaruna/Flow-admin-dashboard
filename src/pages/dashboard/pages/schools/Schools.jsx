@@ -107,7 +107,7 @@ const Schools = () => {
       </div>
       <table className='table '>
         <thead>
-          <tr>
+          <tr className='table-header'>
             <th>S/N</th>
             <th>Name of School</th>
             <th>Country</th>
@@ -124,7 +124,7 @@ const Schools = () => {
               style={{ cursor: 'pointer' }}
             >
               <td>{index + 1}</td>
-              <td>{school.name}</td>
+              <td className='school-name'>{school.name}</td>
               <td>{school.country}</td>
               <td>{school.state}</td>
               <td>

@@ -1,0 +1,79 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.search-box {
+  width: 200px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.filter-sort {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-btn,
+.sort-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.individuals-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.individuals-table th,
+.individuals-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.individuals-table th {
+  background-color: #f4f4f4;
+}
+
+.grade {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.grade.primary {
+  background-color: #ffc107;
+}
+
+.grade.educator {
+  background-color: #17a2b8;
+}
+
+.grade.secondary {
+  background-color: #28a745;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.pagination-btn {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.flag {
+  margin-right: 5px;
+}

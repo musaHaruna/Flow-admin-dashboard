@@ -152,6 +152,8 @@ const SchoolProfile = () => {
                   <div className='action-container'>
                     <Icon
                       icon='pepicons-pencil:dots-y'
+                      width={30}
+                      className='icon'
                       onClick={() => handleActionClick(index)}
                     />
                     {showDropdown === index && (
@@ -202,6 +204,8 @@ const SchoolProfile = () => {
                     <Icon
                       icon='pepicons-pencil:dots-y'
                       onClick={() => handleActionClick(index)}
+                      width={30}
+                      className='icon'
                     />
                     {showDropdown === index && (
                       <div className='dropdown'>
@@ -229,18 +233,19 @@ const SchoolProfile = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel='Delete Modal'
-        className='custom-modal'
+        className='custom-modal-success'
         overlayClassName='custom-overlay'
       >
-        <div className='modal-content'>
+        <div className='succes-modal-content'>
           <div className='success-icon icon-with-bg'>
-            <Icon
-              icon='octicon:check-circle-fill-16'
-              className='rounded-icon'
-            />
+            <div class='circle'>
+              <div class='checkmark'></div>
+            </div>
           </div>
-          <h4>Successfull</h4>
-          <p>You have successfully deleted this email from the team.</p>
+          <h4 className='text-center'>Successfull</h4>
+          <p className='text-center'>
+            You have successfully deleted this email from the team.
+          </p>
         </div>
       </Modal>
     </div>

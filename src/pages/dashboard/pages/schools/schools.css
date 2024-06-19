@@ -6,7 +6,7 @@
 }
 
 .search-box {
-  width: 90%;
+  width: 70%;
   display: flex;
   align-items: center;
   gap: 0.2rem;
@@ -22,6 +22,15 @@
   border: none;
 }
 
+.table td.school-name {
+  text-align: left;
+}
+
+.table thead tr.table-header th {
+  color: #333333;
+  font-size: 14px;
+}
+
 .filters {
   display: flex;
   align-items: center;
@@ -29,10 +38,11 @@
   color: #262626;
 }
 
-select {
+.filter-sort select {
   background-color: transparent;
   color: #262626;
   font-size: 12px;
+  border: none;
 }
 .search-box input {
   margin-left: 10px;
@@ -50,11 +60,10 @@ table {
   border-radius: 5px;
 }
 
-
 .table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 .badge-primary {
   background-color: #ffcc00;
@@ -83,4 +92,3 @@ thead {
   align-items: center;
   justify-content: space-between;
 }
-
