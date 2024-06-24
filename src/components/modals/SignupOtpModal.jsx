@@ -6,7 +6,7 @@ import adminService from '../../services/api/admin'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 
-export default function OtpModal({ email, resendOTP }) {
+export default function SignupOtpModal({ email, resendOTP }) {
   const [modalIsOpen, setIsOpen] = useState(false)
   const [otp, setOtp] = useState(['', '', '', '', '', ''])
   const dispatch = useDispatch()

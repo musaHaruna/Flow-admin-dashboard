@@ -196,6 +196,10 @@ li {
   border-radius: 20px;
   padding: 30px 60px;
 }
+
+p.head-p {
+  text-align: center;
+}
 .custom-modal-success {
   width: 35%;
   display: flex;

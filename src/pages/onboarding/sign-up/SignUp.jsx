@@ -9,7 +9,7 @@ import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { RotatingLines } from 'react-loader-spinner'
 import { useDispatch } from 'react-redux'
-import OTP from '../../../components/modals/OTP'
+import SignupOtpModal from '../../../components/modals/SignupOtpModal'
 import '../onboarding.css'
 import adminService from '../../../services/api/admin'
 import { setToken } from '../../../redux/reducers/jwtReducer' // Assuming this is the correct import path
@@ -179,7 +179,7 @@ export default function SignUp() {
         contentLabel='Example Modal'
         shouldCloseOnOverlayClick={true}
       >
-        <OTP email={email} resendOTP={handleSubmit(onSubmit)} />
+        <SignupOtpModal email={email} resendOTP={handleSubmit(onSubmit)} />
       </Modal>
     </div>
   )

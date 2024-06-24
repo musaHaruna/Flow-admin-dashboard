@@ -5,7 +5,7 @@ export default function EmailVerificationSuccessful({ from, email }) {
   const navigate = useNavigate()
 
   return (
-    <div className='success-modal modal-content'>
+    <div className='success-modal '>
       <div className='d-flex flex-column align-items-center'>
         <div className='success-icon'>
           <div className='success-icon icon-with-bg'>
@@ -25,7 +25,7 @@ export default function EmailVerificationSuccessful({ from, email }) {
         {from === 'otp' ? (
           <p className='head-p'>You have successfully created your account.</p>
         ) : from === 'resetPassword' ? (
-          <p className=''>You have successfully changed your password.</p>
+          <p className='head-p'>You have successfully changed your password.</p>
         ) : (
           <p className='head-p'>
             A password reset link has been sent to <span>{email && email}</span>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Modal from 'react-modal'
 import EmailVerificationSuccessful from '../../../components/modals/EmailVerificationSuccessful'
@@ -9,18 +9,39 @@ import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { RotatingLines } from 'react-loader-spinner'
 import '../onboarding.css'
+import adminService from '../../../services/api/admin' // Adjust import path as per your project structure
+import { setToken } from '../../../redux/reducers/jwtReducer'
+import { useDispatch } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
+
 export default function ForgotPassword() {
   const [modalIsOpen, setModalIsOpen] = useState(false)
-
   const [email, setEmail] = useState('')
 
-  function openModal() {
+  const dispatch = useDispatch()
+  const location = useLocation()
+  const navigate = useNavigate()
+  // Function to open the modal
+  const openModal = () => {
     setModalIsOpen(true)
   }
 
-  function closeModal() {
+  // Function to close the modal
+  const closeModal = () => {
     setModalIsOpen(false)
   }
+  useEffect(() => {
+    // Extract parameters from the URL
+    const urlParams = new URLSearchParams(location.search)
+    const resetToken = urlParams.get('t')
+    const queryCode = urlParams.get('c')
+
+    if (resetToken && queryCode) {
+      mutate({ code: queryCode })
+      dispatch(setToken(resetToken))
+    } else {
+    }
+  }, [])
 
   const schema = yup.object().shape({
     email: yup.string().required('Enter a valid email'),
@@ -34,26 +55,40 @@ export default function ForgotPassword() {
     resolver: yupResolver(schema),
   })
 
-  // const mutation = useMutation({
-  //   mutationFn: userService.forgotPassword,
-  //   onSuccess: (data) => {
-  //     console.log(data, 'Data FP')
-  //     // Handle successful login
-  //     openModal()
-  //   },
-  //   onError: (error) => {
-  //     // Handle login error
-  //     console.error('error:', error)
+  const mutation = useMutation({
+    mutationFn: adminService.adminForgotPassword,
+    onSuccess: (data) => {
+      // Handle successful login
+      openModal()
+    },
+    onError: (error) => {
+      // Handle login error
 
-  //     toast.error(error)
-  //     toast.error(error?.message)
-  //   },
-  // })
+      toast.error(error)
+      toast.error(error?.message)
+    },
+  })
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: adminService.adminForgotPasswordOtp,
+    onSuccess: (data) => {
+      // Handle successful login
+      toast.success(data?.message)
+      navigate('/reset-password', { replace: true })
+
+      // const newUrl = window.location.origin + window.location.pathname
+      // window.history.replaceState({}, document.title, newUrl)
+    },
+    onError: (error) => {
+      // Handle login error
+      navigate('/sign-up', { replace: true })
+      toast.error(error)
+    },
+  })
 
   const onSubmit = (data) => {
     // Call the mutate function to trigger the login mutation
-    setEmail(data.email)
-    openModal()
+    mutation.mutate(data)
     //
   }
 
@@ -76,18 +111,22 @@ export default function ForgotPassword() {
                 <p className='error-message'>Email is required</p>
               )}
             </div>
-            <button className='btn submit-btn' type='submit'>
-              {/* {mutation.isPending ? (
+            <button
+              className='btn submit-btn'
+              type='submit'
+              disabled={mutation.isPending}
+            >
+              {mutation.isPending ? (
                 <RotatingLines
-                  type='Oval'
-                  style={{ color: '#FFF' }}
-                  height={20}
-                  width={20}
+                  strokeColor='#FFF'
+                  strokeWidth='5'
+                  animationDuration='0.75'
+                  width='20'
+                  visible={true}
                 />
               ) : (
-                <>Submit</>
-              )} */}
-              <>Submit</>
+                'Submit'
+              )}
             </button>
           </div>
         </form>
@@ -99,13 +138,12 @@ export default function ForgotPassword() {
 
       <Modal
         isOpen={modalIsOpen}
-        onRequestClose={closeModal}
         contentLabel='Example Modal'
-        className='custom-modal'
+        className='custom-modal-success'
         overlayClassName='custom-overlay'
         shouldCloseOnOverlayClick={false}
       >
-        <EmailVerificationSuccessful from='forgotPassword' email={email} />
+        <EmailVerificationSuccessful from='restPassword' />
       </Modal>
     </div>
   )

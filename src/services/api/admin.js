@@ -50,6 +50,34 @@ class AdminOBJ {
     }
   }
 
+  //Forget password otp
+  adminForgotPasswordOtp = async (data) => {
+    try {
+      const response = await api.patch(`api/admins/verify-token`, data)
+      return response.data
+    } catch (err) {
+      throw err?.response?.data || err.message
+    }
+  }
+  //Forget password
+  adminForgotPassword = async (data) => {
+    try {
+      const response = await api.post(`api/admins/forgot-password`, data)
+      return response.data
+    } catch (err) {
+      throw err?.response?.data || err.message
+    }
+  }
+  //Forget password
+  adminResetPassword = async (data) => {
+    try {
+      const response = await api.put(`api/admins/password`, data)
+      return response.data
+    } catch (err) {
+      throw err?.response?.data || err.message
+    }
+  }
+
   //Get app members
   getMembers = async () => {
     try {

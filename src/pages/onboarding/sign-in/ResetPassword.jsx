@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Icon } from '@iconify/react'
 import Modal from 'react-modal'
 import EmailVerificationSuccessful from '../../../components/modals/EmailVerificationSuccessful'
-import { useDispatch } from 'react-redux'
-import userService from '../../../services/api/user'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -11,49 +9,21 @@ import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { RotatingLines } from 'react-loader-spinner'
+import adminService from '../../../services/api/admin' // Adjust import path as per your project structure
+
 export default function ResetPassword() {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const [open, setOpen] = useState(true)
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-  const [password, setPassword] = useState('')
-  const [confirmPass, setConfirmPass] = useState('')
+  const [modalIsOpen, setModalIsOpen] = useState(true)
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [showPasswordError, setShowPasswordError] = useState(false)
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: userService.confirmToken,
-    onSuccess: (data) => {
-      // Handle successful login
-      navigate('/reset-password', { replace: true })
-      setOpen(true)
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
 
-      // const newUrl = window.location.origin + window.location.pathname
-      // window.history.replaceState({}, document.title, newUrl)
-    },
-    onError: (error) => {
-      // Handle login error
-      console.log(error)
-      navigate('/', { replace: true })
-
-      toast.error(error)
-      toast.error(error?.message)
-    },
-  })
-
-  useEffect(() => {
-    // Extract parameters from the URL
-    // const urlParams = new URLSearchParams(window.location.search)
-    // const resetToken = urlParams.get('t')
-    // const queryCode = urlParams.get('c')
-    // if (resetToken && queryCode) {
-    //   mutate({ code: queryCode })
-    //   dispatch(setToken(resetToken))
-    // } else {
-    //   navigate('/', { replace: true })
-    // }
-  }, [])
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword)
+  }
 
   const schema = yup.object().shape({
     password: yup
@@ -63,7 +33,7 @@ export default function ResetPassword() {
       .required('Password is required'),
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref('password'), null], 'Passwords must match') // Validation rule for matching passwords
+      .oneOf([yup.ref('password'), null], 'Passwords must match')
       .required('Confirm Password is required'),
   })
 
@@ -76,122 +46,102 @@ export default function ResetPassword() {
   })
 
   const mutation = useMutation({
-    mutationFn: userService.newPassword,
-    onSuccess: (data) => {
-      // Handle successful login
+    mutationFn: adminService.adminResetPassword,
+    onSuccess: () => {
       openModal()
     },
     onError: (error) => {
-      // Handle login error
-      console.error('error:', error)
-
-      toast.error(error)
-      toast.error(error?.message)
+      console.error('Error resetting password:', error)
+      toast.error(error.message || 'Failed to reset password')
     },
   })
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword)
-  }
-
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword)
-  }
-
-  function openModal() {
+  const openModal = () => {
     setModalIsOpen(true)
   }
 
-  const handleSignIn = (e) => {
-    e.preventDefault()
-
-    openModal()
+  const closeModal = () => {
+    setModalIsOpen(false)
+    navigate('/sign-in') // Redirect to home after modal is closed
   }
 
-  const onSubmit = (data) => {
-    // Call the mutate function to trigger the login mutation
-    // console.log(data)
-    // mutation.mutate(data)
+  const onSubmit = ({ password }) => {
+    mutation.mutate({ password })
   }
+
   return (
-    <div>
-      {open && (
-        <div className='registration-page'>
-          <h2 className='head-text'>Reset Password</h2>
-          <p className='head-p'>Create a New Password</p>
+    <div className='registration-page'>
+      <h2 className='head-text'>Reset Password</h2>
+      <p className='head-p'>Create a New Password</p>
 
-          <form onSubmit={handleSignIn}>
-            <div className=''>
-              <div className='form-group my-3'>
-                <label>Enter New Password</label>
-                <div className='create-password '>
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder='Type here...'
-                    {...register('password')}
-                  />
-                  <div
-                    className='password-toggle float-right'
-                    onClick={togglePasswordVisibility}
-                  >
-                    <Icon
-                      icon={showPassword ? 'mdi:eye-off' : 'mdi:eye'}
-                      className='eye-icon'
-                    />
-                  </div>
-                </div>
-                {errors.password && (
-                  <p className='error-message'>Password is required</p>
-                )}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <div className='form-group my-3'>
+            <label>Enter New Password</label>
+            <div className='create-password input-with-icon'>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder='Type here...'
+                {...register('password')}
+              />
+              <div
+                className='password-toggle float-right'
+                onClick={togglePasswordVisibility}
+              >
+                <Icon
+                  icon={showPassword ? 'mdi:eye-off' : 'mdi:eye'}
+                  className='eye-icon'
+                />
               </div>
-
-              <div className='form-group my-3'>
-                <label>Confirm Password</label>
-                <div className='create-password input-with-icon'>
-                  <input
-                    type={showConfirmPassword ? 'text' : 'password'}
-                    placeholder='Type here...'
-                    {...register('confirmPassword')}
-                  />
-                  <div
-                    className='password-toggle float-right'
-                    onClick={toggleConfirmPasswordVisibility}
-                  >
-                    <Icon
-                      icon={showConfirmPassword ? 'mdi:eye-off' : 'mdi:eye'}
-                      className='eye-icon'
-                    />
-                  </div>
-                </div>
-                {errors.confirmPassword && (
-                  <p className='error-message'>
-                    {errors.confirmPassword.message}
-                  </p>
-                )}
-              </div>
-
-              <button className='btn submit-btn' type='submit'>
-                {mutation.isPending ? (
-                  <RotatingLines
-                    type='Oval'
-                    style={{ color: '#FFF' }}
-                    height={20}
-                    width={20}
-                  />
-                ) : (
-                  <>Submit</>
-                )}
-              </button>
             </div>
-          </form>
+            {errors.password && (
+              <p className='error-message'>{errors.password.message}</p>
+            )}
+          </div>
+
+          <div className='form-group my-3'>
+            <label>Confirm Password</label>
+            <div className='create-password input-with-icon'>
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                placeholder='Type here...'
+                {...register('confirmPassword')}
+              />
+              <div
+                className='password-toggle float-right'
+                onClick={toggleConfirmPasswordVisibility}
+              >
+                <Icon
+                  icon={showConfirmPassword ? 'mdi:eye-off' : 'mdi:eye'}
+                  className='eye-icon'
+                />
+              </div>
+            </div>
+            {errors.confirmPassword && (
+              <p className='error-message'>{errors.confirmPassword.message}</p>
+            )}
+          </div>
+
+          <button className='btn submit-btn' type='submit'>
+            {mutation.isPending ? (
+              <RotatingLines
+                type='Oval'
+                style={{ color: '#FFF' }}
+                height={20}
+                width={20}
+              />
+            ) : (
+              'Submit'
+            )}
+          </button>
         </div>
-      )}
+      </form>
 
       <Modal
         isOpen={modalIsOpen}
-        // onRequestClose={closeModal}
-        contentLabel='Example Modal'
-        className='custom-modal'
+        onRequestClose={closeModal}
+        contentLabel='Email Verification Modal'
+        className='custom-modal-success'
         overlayClassName='custom-overlay'
         shouldCloseOnOverlayClick={false}
       >
