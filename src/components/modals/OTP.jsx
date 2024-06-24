@@ -3,13 +3,13 @@ import Modal from 'react-modal'
 import EmailVerificationSuccessful from './EmailVerificationSuccessful'
 import { useMutation } from '@tanstack/react-query'
 import adminService from '../../services/api/admin'
-import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
 
 export default function OtpModal({ email, resendOTP }) {
-  const dispatch = useDispatch()
   const [modalIsOpen, setIsOpen] = useState(false)
   const [otp, setOtp] = useState(['', '', '', '', '', ''])
+  const dispatch = useDispatch()
 
   const handleChange = (e, index) => {
     const value = e.target.value
@@ -35,6 +35,7 @@ export default function OtpModal({ email, resendOTP }) {
     onSuccess: (data) => {
       console.log('OTP verification successful:', data)
       toast.success(data.message)
+      dispatch(setToken(data?.token))
       openModal() // Open the modal on successful OTP verification
     },
     onError: (error) => {
@@ -108,7 +109,11 @@ export default function OtpModal({ email, resendOTP }) {
                 )
               </span>
             ) : (
-              <button type='submit' style={{ cursor: 'pointer' }}>
+              <button
+                className='resend-btn'
+                type='submit'
+                style={{ cursor: 'pointer' }}
+              >
                 Resend OTP
               </button>
             )}
@@ -118,7 +123,7 @@ export default function OtpModal({ email, resendOTP }) {
       <Modal
         isOpen={modalIsOpen}
         contentLabel='Example Modal'
-        className='custom-modal'
+        className='custom-modal-success'
         overlayClassName='custom-overlay'
         shouldCloseOnOverlayClick={false}
       >

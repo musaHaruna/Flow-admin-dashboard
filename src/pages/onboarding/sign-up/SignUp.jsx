@@ -31,7 +31,6 @@ const schema = yup.object().shape({
 })
 
 export default function SignUp() {
-  const navigate = useNavigate()
   const location = useLocation()
   const dispatch = useDispatch()
   const [showPassword, setShowPassword] = useState(false)
@@ -54,6 +53,8 @@ export default function SignUp() {
     resolver: yupResolver(schema),
   })
 
+  const params = new URLSearchParams(location.search)
+  const email = params.get('email')
   // Extract email and token from URL
   useEffect(() => {
     const params = new URLSearchParams(location.search)
@@ -168,16 +169,16 @@ export default function SignUp() {
         </div>
       </form>
       <p className='have-account'>
-        Already have an account? <Link to='/'>Sign In</Link>
+        Already have an account? <Link to='/sign-in'>Sign In</Link>
       </p>
       <Modal
         isOpen={modalIsOpen}
-        className='custom-modal'
+        className='custom-modal-otp'
         overlayClassName='custom-overlay'
         contentLabel='Example Modal'
         shouldCloseOnOverlayClick={true}
       >
-        <OTP email={FormData?.email} resendOTP={handleSubmit(onSubmit)} />
+        <OTP email={email} resendOTP={handleSubmit(onSubmit)} />
       </Modal>
     </div>
   )

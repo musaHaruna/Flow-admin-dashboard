@@ -12,6 +12,13 @@
   border-radius: 15px;
 }
 
+.resend-btn {
+  color: #275dad;
+  border: none;
+  background-color: transparent;
+  margin-left: 0.4rem;
+}
+
 .success-icon {
   display: flex;
   align-items: center;

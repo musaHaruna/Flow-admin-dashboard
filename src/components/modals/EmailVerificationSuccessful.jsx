@@ -35,7 +35,7 @@ export default function EmailVerificationSuccessful({ from, email }) {
         {from === 'otp' ? (
           <button
             onClick={() => {
-              navigate('/')
+              navigate('/sign-in')
             }}
             className='btn submit-btn success mt-5'
           >
@@ -44,7 +44,7 @@ export default function EmailVerificationSuccessful({ from, email }) {
         ) : from === 'resetPassword' ? (
           <button
             onClick={() => {
-              navigate('/')
+              navigate('/sign-in')
             }}
             className='btn submit-btn success mt-5'
           >
