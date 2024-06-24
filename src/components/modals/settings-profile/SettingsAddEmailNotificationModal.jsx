@@ -78,7 +78,7 @@ const SettingsAddEmailNotificationModal = ({ closeModal }) => {
   }
 
   return (
-    <div className='' onSubmit={handleSubmit(onSubmit)}>
+    <div className=''>
       <div className='edit-course-container '>
         <div className='header'>
           <p className='team-heading'>Add New Team</p>
@@ -89,7 +89,7 @@ const SettingsAddEmailNotificationModal = ({ closeModal }) => {
 
         <p className='sub-heading'>Input teammate’s details below</p>
 
-        <form className='form-borders' onSubmit={handleSubmit(onSubmit)}>
+        <form className='form-borders'>
           <div className='flex-row '>
             <div>
               <label>First Name *</label>

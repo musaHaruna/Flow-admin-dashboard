@@ -11,6 +11,26 @@ class AdminOBJ {
       throw err?.response?.data || err.message
     }
   }
+  //Get Admins
+  getAdmins = async () => {
+    try {
+      // Check if data is not empty
+      const response = await api.get(`api/admins/all`)
+      return response.data
+    } catch (err) {
+      throw err?.response?.data || err.message
+    }
+  }
+  //Get My profile
+  getMyProfile = async () => {
+    try {
+      // Check if data is not empty
+      const response = await api.get(`api/admins/me`)
+      return response.data
+    } catch (err) {
+      throw err?.response?.data || err.message
+    }
+  }
   //Login
   adminLogin = async (data) => {
     try {
@@ -72,6 +92,45 @@ class AdminOBJ {
   adminResetPassword = async (data) => {
     try {
       const response = await api.put(`api/admins/password`, data)
+      return response.data
+    } catch (err) {
+      throw err?.response?.data || err.message
+    }
+  }
+  //Update Profile
+  updateProfile = async (data) => {
+    try {
+      const response = await api.put(`api/admins/profile`, data)
+      return response.data
+    } catch (err) {
+      throw err?.response?.data || err.message
+    }
+  }
+  //Change Password
+  updateProfile = async (data) => {
+    try {
+      const response = await api.put(`api/admins/profile`, data)
+      return response.data
+    } catch (err) {
+      throw err?.response?.data || err.message
+    }
+  }
+  //Update Profile
+  changePassword = async (data) => {
+    try {
+      const response = await api.patch(`api/admins/password`, data)
+      return response.data
+    } catch (err) {
+      throw err?.response?.data || err.message
+    }
+  }
+
+  //Delete Admin
+  deleteAdmin = async (params) => {
+    try {
+      // Check if data is not empty
+
+      const response = await api.delete(`api/admins/${params}`)
       return response.data
     } catch (err) {
       throw err?.response?.data || err.message

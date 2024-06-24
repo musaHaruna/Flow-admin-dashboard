@@ -71,11 +71,12 @@
 .team-members table {
   width: 100%;
   border-collapse: collapse;
+  border: 1px solid #5b616a;
 }
 
-.team-members th,
-.team-members td {
-  border: 1px solid #ddd;
+.team-members th:not(:last-child),
+.team-members td:not(:last-child) {
+  border-right: 1px solid#fff;
   padding: 8px;
 }
 
@@ -201,4 +202,9 @@ tbody {
   border: solid white;
   border-width: 0 6px 6px 0;
   transform: rotate(45deg);
+}
+
+.team-members table thead tr th {
+  background-color: #fff;
+  font-weight: 500;
 }
