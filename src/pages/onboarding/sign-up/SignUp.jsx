@@ -73,6 +73,7 @@ export default function SignUp() {
     onSuccess: (data) => {
       console.log('Registration successful:', data)
       toast.success(data?.message)
+      dispatch(setToken(data?.token))
       openModal()
     },
     onError: (error) => {

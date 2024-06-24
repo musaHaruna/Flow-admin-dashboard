@@ -11,7 +11,6 @@ import { useDispatch } from 'react-redux'
 import { setToken } from '../../../redux/reducers/jwtReducer'
 import '../onboarding.css'
 import adminService from '../../../services/api/admin'
-import { Navigate } from 'react-router-dom'
 
 export default function SignIn() {
   const navigate = useNavigate()
@@ -24,7 +23,7 @@ export default function SignIn() {
   }
 
   const schema = yup.object().shape({
-    email: yup.string().required('Your Full Name is Required!'),
+    email: yup.string().required('Email is required'),
     password: yup
       .string()
       .min(6, 'Password must be at least 6 characters')
@@ -41,25 +40,23 @@ export default function SignIn() {
   })
 
   const mutation = useMutation({
-    mutationFn: adminService.adminLogin, // Assuming userService.register is your API call function
+    mutationFn: adminService.adminLogin,
     onSuccess: (data) => {
-      console.log('Login successful:', data)
       toast.success('Admin Login Successful')
       dispatch(setToken(data?.token))
+      localStorage.setItem('Flow-Auth-Token', data?.token)
       navigate('/', { replace: true })
     },
     onError: (error) => {
-      console.error('Registration error:', error)
       toast.dismiss()
-      toast.error(error?.message)
-      toast.error(error || 'Registration failed')
+      toast.error(error?.message || 'Login failed')
     },
   })
 
   const onSubmit = (data) => {
-    // Call the mutate function to trigger the login mutation
     mutation.mutate(data)
   }
+
   return (
     <div className='registration-page'>
       <h2 className='head-text'>Sign In</h2>
@@ -70,11 +67,13 @@ export default function SignIn() {
           <div className='form-group'>
             <label>Email *</label>
             <input type='email' {...register('email', { required: true })} />
-            {errors.email && <p className='error-message'>Email is required</p>}
+            {errors.email && (
+              <p className='error-message'>{errors.email.message}</p>
+            )}
           </div>
           <div className='form-group my-3'>
             <div className='create-password'>
-              <label>Create Password *</label>
+              <label>Password *</label>
               <Link to='/forgot-password' className='forgot-password'>
                 Forgot Password?
               </Link>
@@ -97,7 +96,7 @@ export default function SignIn() {
               </div>
             </div>
             {errors.password && (
-              <p className='error-message'>Password is required</p>
+              <p className='error-message'>{errors.password.message}</p>
             )}
             {showPasswordError && (
               <p className='error-message'>Incorrect email or password</p>
