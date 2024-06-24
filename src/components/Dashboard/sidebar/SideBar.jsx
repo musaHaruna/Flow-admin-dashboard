@@ -26,8 +26,8 @@ function Sidebar() {
         <ul className='sidebar-user-menu mt-3 desktop'>
           <li>
             <Link
-              to='/dashboard'
-              className={`link ${isActiveLink('/dashboard') ? 'active' : ''}`}
+              to='/'
+              className={`link ${isActiveLink('/') ? 'active' : ''}`}
             >
               <Icon icon='mdi:view-dashboard' className='sidebar-icon' />
               Overview
@@ -47,11 +47,9 @@ function Sidebar() {
               <ul className='nested-menu'>
                 <li>
                   <Link
-                    to='/dashboard/courses/all'
+                    to='courses/all'
                     className={`link ${
-                      isActiveLink('/dashboard/courses/all')
-                        ? 'active-inner'
-                        : 'inner'
+                      isActiveLink('courses/all') ? 'active-inner' : 'inner'
                     }`}
                   >
                     All
@@ -59,11 +57,9 @@ function Sidebar() {
                 </li>
                 <li>
                   <Link
-                    to='/dashboard/courses/draft'
+                    to='courses/draft'
                     className={`link ${
-                      isActiveLink('/dashboard/courses/draft')
-                        ? 'active-inner'
-                        : 'inner'
+                      isActiveLink('courses/draft') ? 'active-inner' : 'inner'
                     }`}
                   >
                     Draft
@@ -71,9 +67,9 @@ function Sidebar() {
                 </li>
                 <li>
                   <Link
-                    to='/dashboard/courses/published'
+                    to='courses/published'
                     className={`link ${
-                      isActiveLink('/dashboard/courses/published')
+                      isActiveLink('courses/published')
                         ? 'active-inner'
                         : 'inner'
                     }`}
@@ -87,10 +83,8 @@ function Sidebar() {
 
           <li>
             <Link
-              to='/dashboard/schools'
-              className={`link ${
-                isActiveLink('/dashboard/schools') ? 'active' : ''
-              }`}
+              to='schools'
+              className={`link ${isActiveLink('schools') ? 'active' : ''}`}
             >
               <Icon icon='mdi:school' className='sidebar-icon' />
               Schools
@@ -99,10 +93,8 @@ function Sidebar() {
 
           <li>
             <Link
-              to='/dashboard/individuals'
-              className={`link ${
-                isActiveLink('/dashboard/individuals') ? 'active' : ''
-              }`}
+              to='individuals'
+              className={`link ${isActiveLink('individuals') ? 'active' : ''}`}
             >
               <Icon icon='mdi:account' className='sidebar-icon' />
               Individuals
@@ -111,10 +103,8 @@ function Sidebar() {
 
           <li>
             <Link
-              to='/dashboard/support'
-              className={`link ${
-                isActiveLink('/dashboard/support') ? 'active' : ''
-              }`}
+              to='support'
+              className={`link ${isActiveLink('support') ? 'active' : ''}`}
             >
               <Icon icon='mdi:lifebuoy' className='sidebar-icon' />
               Support
@@ -123,9 +113,9 @@ function Sidebar() {
 
           <li>
             <Link
-              to='/dashboard/payment-history'
+              to='payment-history'
               className={`link ${
-                isActiveLink('/dashboard/payment-history') ? 'active' : ''
+                isActiveLink('payment-history') ? 'active' : ''
               }`}
             >
               <Icon icon='mdi:credit-card-outline' className='sidebar-icon' />
@@ -146,9 +136,9 @@ function Sidebar() {
               <ul className='nested-menu'>
                 <li>
                   <Link
-                    to='/dashboard/settings/profile'
+                    to='settings/profile'
                     className={`link ${
-                      isActiveLink('/dashboard/settings/profile')
+                      isActiveLink('dashboard/settings/profile')
                         ? 'active-inner'
                         : 'inner'
                     }`}
@@ -158,7 +148,7 @@ function Sidebar() {
                 </li>
                 <li>
                   <Link
-                    to='/dashboard/settings/teams'
+                    to='settings/teams'
                     className={`link ${
                       isActiveLink('/dashboard/settings/teams')
                         ? 'active-inner'
@@ -170,9 +160,9 @@ function Sidebar() {
                 </li>
                 <li>
                   <Link
-                    to='/dashboard/settings/change-password'
+                    to='settings/change-password'
                     className={`link ${
-                      isActiveLink('/dashboard/settings/change-password')
+                      isActiveLink('settings/change-password')
                         ? 'active-inner'
                         : 'inner'
                     }`}
@@ -182,9 +172,9 @@ function Sidebar() {
                 </li>
                 <li>
                   <Link
-                    to='/dashboard/settings/email-notifications'
+                    to='settings/email-notifications'
                     className={`link ${
-                      isActiveLink('/dashboard/settings/email-notifications')
+                      isActiveLink('/settings/email-notifications')
                         ? 'active-inner'
                         : 'inner'
                     }`}
@@ -194,9 +184,9 @@ function Sidebar() {
                 </li>
                 <li>
                   <Link
-                    to='/dashboard/settings/deactivate-account'
+                    to='settings/deactivate-account'
                     className={`link ${
-                      isActiveLink('/dashboard/settings/deactivate-account')
+                      isActiveLink('settings/deactivate-account')
                         ? 'active-inner'
                         : 'inner'
                     }`}

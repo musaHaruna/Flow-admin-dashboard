@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
 import OnboardingRootLayout from './pages/onboarding/OnboardingRootLayout'
 import SignIn from './pages/onboarding/sign-in/SignIn'
@@ -24,63 +25,54 @@ import SettingsProfile from './pages/dashboard/pages/settings/profile/SettingsPr
 import SettingsEmailNotifications from './pages/dashboard/pages/settings/email-notification/SettingsEmailNotifications'
 import SettingsTeams from './pages/dashboard/pages/settings/teams/SettingsTeams'
 import SingleCoursePage from './pages/dashboard/pages/courses/single-course-page/SingleCoursePage'
+import ProtectedRoute from './pages/ProtectedRoute'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<OnboardingRootLayout />}>
-          <Route path='/' element={<SignIn />} />
-          <Route path='/forgot-password' element={<ForgotPassword />} />
-          <Route path='/reset-password' element={<ResetPassword />} />
-          <Route path='/sign-up' element={<SignUp />} />
-        </Route>
-        <Route path='/dashboard' element={<Dashboard />}>
+        <Route
+          path='/'
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<Overview />} />
-          <Route path='/dashboard/courses/all' element={<CoursesAll />} />
-          <Route path='/dashboard/courses/draft' element={<CoursesDraft />} />
+          <Route path='courses/all' element={<CoursesAll />} />
+          <Route path='courses/draft' element={<CoursesDraft />} />
+          <Route path='courses/published' element={<CoursesPublished />} />
+          <Route path='individuals' element={<Individuals />} />
+          <Route path='individuals/:id' element={<IndividualInfo />} />
+          <Route path='schools' element={<Schools />} />
+          <Route path='school/:id' element={<SchoolDetail />} />
+          <Route path='support' element={<Support />} />
+          <Route path='payment-history' element={<PayementHistory />} />
+          <Route path='settings/profile' element={<SettingsProfile />} />
+          <Route path='settings/teams' element={<SettingsTeams />} />
           <Route
-            path='/dashboard/courses/published'
-            element={<CoursesPublished />}
-          />
-          <Route path='/dashboard/individuals' element={<Individuals />} />
-
-          <Route
-            path='/dashboard/individuals/:id'
-            element={<IndividualInfo />}
-          />
-          <Route path='/dashboard/schools' element={<Schools />} />
-          <Route path='/dashboard/school/:id' element={<SchoolDetail />} />
-          <Route path='/dashboard/support' element={<Support />} />
-          <Route
-            path='/dashboard/payment-history'
-            element={<PayementHistory />}
-          />
-
-          <Route
-            path='/dashboard/settings/profile'
-            element={<SettingsProfile />}
-          />
-          <Route path='/dashboard/settings/teams' element={<SettingsTeams />} />
-          <Route
-            path='/dashboard/settings/change-password'
+            path='settings/change-password'
             element={<SettingsChangePassword />}
           />
           <Route
-            path='/dashboard/settings/email-notifications'
+            path='settings/email-notifications'
             element={<SettingsEmailNotifications />}
           />
           <Route
-            path='/dashboard/settings/deactivate-account'
+            path='settings/deactivate-account'
             element={<SettingsDeactivateAccount />}
           />
-          <Route
-            path='/dashboard/my-courses/:id'
-            element={<SingleCoursePage />}
-          />
+          <Route path='my-courses/:id' element={<SingleCoursePage />} />
+        </Route>
+        <Route path='/' element={<OnboardingRootLayout />}>
+          <Route path='sign-in' element={<SignIn />} />
+          <Route path='forgot-password' element={<ForgotPassword />} />
+          <Route path='reset-password' element={<ResetPassword />} />
+          <Route path='sign-up' element={<SignUp />} />
         </Route>
       </Routes>
-      <ToastContainer position='top-right' />
+      <ToastContainer position='top-center' />
     </BrowserRouter>
   )
 }

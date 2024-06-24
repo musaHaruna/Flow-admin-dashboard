@@ -1,72 +1,90 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import Modal from 'react-modal'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-// import userService from '../../../services/api/users'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { RotatingLines } from 'react-loader-spinner'
 import { useDispatch } from 'react-redux'
-// import { setToken } from '../../../redux/reducers/jwtReducer'
 import OTP from '../../../components/modals/OTP'
 import '../onboarding.css'
+import adminService from '../../../services/api/admin'
+import { setToken } from '../../../redux/reducers/jwtReducer' // Assuming this is the correct import path
+
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email('Invalid email format')
+    .required('Email is required'),
+  password: yup
+    .string()
+    .min(6, 'Password must be at least 6 characters')
+    .max(20, 'Password must not exceed 20 characters')
+    .required('Password is required'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .required('Confirm Password is required'),
+})
 
 export default function SignUp() {
   const navigate = useNavigate()
+  const location = useLocation()
   const dispatch = useDispatch()
   const [showPassword, setShowPassword] = useState(false)
-  const [showPasswordError, setShowPasswordError] = useState(false)
   const [modalIsOpen, setIsOpen] = useState(false)
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
   }
 
-  const schema = yup.object().shape({
-    email: yup
-      .string()
-      .email('Invalid email format')
-      .required('Email is required'),
-    password: yup
-      .string()
-      .min(6, 'Password must be at least 6 characters')
-      .max(20, 'Password must not exceed 20 characters')
-      .required('Password is required'),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref('password'), null], 'Passwords must match')
-      .required('Confirm Password is required'),
-  })
+  const openModal = () => {
+    setIsOpen(true)
+  }
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = (data) => {
-    mutation.mutate(data)
-  }
+  // Extract email and token from URL
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const email = params.get('email')
+    const token = params.get('t')
+    if (email) {
+      setValue('email', email)
+    }
+    if (token) {
+      dispatch(setToken(token))
+    }
+  }, [location, setValue, dispatch])
 
-  // const mutation = useMutation({
-  //   mutationFn: userService.register, // Assuming userService.register is your API call function
-  //   onSuccess: (data) => {
-  //     console.log('Registration successful:', data)
-  //     toast.success(data.message)
-  //     dispatch(setToken(data?.token))
-  //     navigate('/dashboard', { replace: true })
-  //   },
-  //   onError: (error) => {
-  //     console.error('Registration error:', error)
-  //     toast.dismiss()
-  //     toast.error(error?.message || 'Registration failed')
-  //   },
-  // })
+  const mutation = useMutation({
+    mutationFn: adminService.register, // Assuming adminService.register is your API call function
+    onSuccess: (data) => {
+      console.log('Registration successful:', data)
+      toast.success(data?.message)
+      openModal()
+    },
+    onError: (error) => {
+      console.error('Registration error:', error)
+      toast.dismiss()
+      toast.error(error?.message || 'Registration failed')
+    },
+  })
+
+  const onSubmit = (data) => {
+    const { confirmPassword, ...rest } = data
+    mutation.mutate(rest)
+  }
 
   return (
     <div className='registration-page'>
@@ -77,7 +95,7 @@ export default function SignUp() {
         <div>
           <div className='form-group'>
             <label>Email *</label>
-            <input type='email' {...register('email')} />
+            <input type='email' {...register('email')} disabled />
             {errors.email && (
               <p className='error-message'>{errors.email.message}</p>
             )}
@@ -133,9 +151,9 @@ export default function SignUp() {
           <button
             className='btn submit-btn'
             type='submit'
-            // disabled={mutation.isLoading}
+            disabled={mutation.isPending}
           >
-            {/* {mutation.isLoading ? (
+            {mutation.isPending ? (
               <RotatingLines
                 strokeColor='#FFF'
                 strokeWidth='5'
@@ -145,8 +163,7 @@ export default function SignUp() {
               />
             ) : (
               'Sign Up'
-            )} */}
-            Sign Up
+            )}
           </button>
         </div>
       </form>
@@ -160,7 +177,7 @@ export default function SignUp() {
         contentLabel='Example Modal'
         shouldCloseOnOverlayClick={true}
       >
-        <OTP email={FormData?.email} resendOTP={() => onSubmit(FormData)} />
+        <OTP email={FormData?.email} resendOTP={handleSubmit(onSubmit)} />
       </Modal>
     </div>
   )

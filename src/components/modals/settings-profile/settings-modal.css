@@ -1,14 +1,41 @@
 input {
   padding: 0.2rem;
   font-size: 14px;
-  background-color: #ecedf0;
+  background-color: #f8f8f8;
   color: #d6d6d6;
-  border: solid 1px #d6d6d6;
+  border: 1px solid #d6d6d6;
 }
 
 label {
-  color: #5b616a;
+  color: #84828a;
   font-size: 14px;
+}
+
+.team-heading {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  margin-left: 40%;
+}
+
+.sub-heading {
+  text-align: center;
+  padding: 1rem 0;
+}
+.form-borders {
+  border-top: 1px solid #5b616a;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+
+.edit-course-container button.update {
+  width: 200px;
+  margin-left: 30%;
+  margin-top: 1.5rem;
+  padding: 0.5rem 2rem;
+  color: #ffff;
+  background-color: #275dad;
+  border-radius: 5px;
 }
 
 select {
@@ -26,12 +53,6 @@ select {
 }
 
 .update {
-  width: 200px;
-  margin-left: auto;
-  padding: 0.5rem 2rem;
-  color: #ffff;
-  background-color: #275dad;
-  border-radius: 5px;
 }
 
 .required {
@@ -44,5 +65,5 @@ select {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #5b616a;
+  border-bottom: none;
 }

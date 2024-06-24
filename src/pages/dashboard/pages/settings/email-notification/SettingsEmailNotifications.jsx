@@ -164,29 +164,10 @@ const SettingsEmailNotifications = () => {
         </tbody>
       </table>
       <Modal
-        isOpen={modalIsOpenSuccess}
-        onRequestClose={closeModal}
-        contentLabel='Delete Modal'
-        className='custom-modal-success'
-        overlayClassName='custom-overlay'
-      >
-        <div className='succes-modal-content'>
-          <div className='success-icon icon-with-bg'>
-            <div class='circle'>
-              <div class='checkmark'></div>
-            </div>
-          </div>
-          <h4 className='text-center'>Successfull</h4>
-          <p className='text-center'>
-            You have successfully invited a teammate.
-          </p>
-        </div>
-      </Modal>
-      <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel='Edit Course'
-        className='edit-course-modal-custom'
+        className='send-invite-modal'
         overlayClassName='custom-overlay'
       >
         <SettingsAddEmailNotificationModal closeModal={closeModal} />

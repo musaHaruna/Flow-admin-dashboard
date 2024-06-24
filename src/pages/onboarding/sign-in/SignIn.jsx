@@ -4,13 +4,14 @@ import { Icon } from '@iconify/react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import userService from '../../../services/api/users'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { RotatingLines } from 'react-loader-spinner'
 import { useDispatch } from 'react-redux'
 import { setToken } from '../../../redux/reducers/jwtReducer'
 import '../onboarding.css'
+import adminService from '../../../services/api/admin'
+import { Navigate } from 'react-router-dom'
 
 export default function SignIn() {
   const navigate = useNavigate()
@@ -39,18 +40,13 @@ export default function SignIn() {
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = (data) => {
-    // Call the mutate function to trigger the login mutation
-    mutation.mutate(data)
-  }
-
   const mutation = useMutation({
-    mutationFn: userService.login, // Assuming userService.register is your API call function
+    mutationFn: adminService.adminLogin, // Assuming userService.register is your API call function
     onSuccess: (data) => {
       console.log('Login successful:', data)
-      toast.success(data.message)
+      toast.success('Admin Login Successful')
       dispatch(setToken(data?.token))
-      navigate('/dashboard', { replace: true })
+      navigate('/', { replace: true })
     },
     onError: (error) => {
       console.error('Registration error:', error)
@@ -60,6 +56,10 @@ export default function SignIn() {
     },
   })
 
+  const onSubmit = (data) => {
+    // Call the mutate function to trigger the login mutation
+    mutation.mutate(data)
+  }
   return (
     <div className='registration-page'>
       <h2 className='head-text'>Sign In</h2>
