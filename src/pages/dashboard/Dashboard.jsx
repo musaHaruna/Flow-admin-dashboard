@@ -1,14 +1,13 @@
-import { Outlet, Link, useLocation } from 'react-router-dom'
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
 import './dashboard.css'
 import Sidebar from '../../components/Dashboard/sidebar/SideBar'
 import logo from '../../assets/logo.png'
-import SingleCoursePage from "./pages/courses/single-course-page/SingleCoursePage"
+import SingleCoursePage from './pages/courses/single-course-page/SingleCoursePage'
 
 import './dashboard.css'
 export default function Dashboard() {
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  // const location = useLocation();
+  const navigate = useNavigate()
+  const location = useLocation()
 
   // const { data, isLoading, isError } = useQuery({
   //     queryKey: ['user'],

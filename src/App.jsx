@@ -46,6 +46,7 @@ function App() {
             path='courses/published'
             element={<CoursesPublished type='published' />}
           />
+          <Route path='/dashboard/my-courses/' element={<SingleCoursePage />} />
           <Route path='individuals' element={<Individuals />} />
           <Route path='individuals/:id' element={<IndividualInfo />} />
           <Route path='schools' element={<Schools />} />
