@@ -40,9 +40,12 @@ function App() {
           }
         >
           <Route index element={<Overview />} />
-          <Route path='courses/all' element={<CoursesAll />} />
-          <Route path='courses/draft' element={<CoursesDraft />} />
-          <Route path='courses/published' element={<CoursesPublished />} />
+          <Route path='courses/all' element={<CoursesAll type='all' />} />
+          <Route path='courses/draft' element={<CoursesDraft type='draft' />} />
+          <Route
+            path='courses/published'
+            element={<CoursesPublished type='published' />}
+          />
           <Route path='individuals' element={<Individuals />} />
           <Route path='individuals/:id' element={<IndividualInfo />} />
           <Route path='schools' element={<Schools />} />

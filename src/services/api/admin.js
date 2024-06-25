@@ -137,6 +137,60 @@ class AdminOBJ {
     }
   }
 
+  //Admin Add Course
+  adminAddCourse = async (formData) => {
+    try {
+      const response = await api.post(`api/admins/courses`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      return response.data
+    } catch (err) {
+      console.log(err)
+      throw err?.response?.data || err.message
+    }
+  }
+
+  //Admin Edit Course
+  adminEditCourse = async (params, formData) => {
+    try {
+      // Check if data is not empty
+      const response = await api.put(`api/admins/courses/${params}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      return response.data
+    } catch (err) {
+      console.log(err)
+      throw err?.response?.data || err.message
+    }
+  }
+
+  //Admin Delete course
+  adminDeleteCourse = async (params) => {
+    try {
+      // Check if data is not empty
+
+      const response = await api.delete(`api/admins/courses/${params}`)
+      return response.data
+    } catch (err) {
+      throw err?.response?.data || err.message
+    }
+  }
+  //Admin change course status
+  adminDeleteCourse = async (params) => {
+    try {
+      // Check if data is not empty
+
+      const response = await api.put(`api/admins/courses/${params}`)
+      return response.data
+    } catch (err) {
+      throw err?.response?.data || err.message
+    }
+  }
+
   //Get app members
   getMembers = async () => {
     try {
